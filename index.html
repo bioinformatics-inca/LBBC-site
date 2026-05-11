@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LBBCC — Laboratório de Bioinformática e Biologia Computacional do Câncer · INCA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #EDEBE6;
+  --bg2:       #E5E2DC;
+  --card:      #FFFFFF;
+  --border:    #D8D4CC;
+  --border2:   #EAE7E1;
+  --text:      #1C1916;
+  --text2:     #5C5650;
+  --text3:     #9A9288;
+  --red:       #B52020;
+  --red-soft:  rgba(181,32,32,0.08);
+  --orange:    #C97A28;
+  --charcoal:  #2E3540;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 58px;
+  background: rgba(237,235,230,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+.logo-icon-wrap {
+  display: flex; align-items: center; gap: 4px;
+}
+
+.logo-strand {
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.logo-dot-r { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.logo-dot-o { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
+.logo-line   { width: 14px; height: 1.5px; background: #C8A882; border-radius: 1px; align-self: center; }
+
+.logo-text-wrap { line-height: 1; }
+
+.logo-mark {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 19px; font-weight: 500;
+  letter-spacing: -0.3px;
+  display: block;
+  line-height: 1;
+}
+
+.lbb { color: var(--charcoal); }
+.c1  { color: var(--red); }
+.c2  { color: var(--orange); }
+
+.logo-sub-text {
+  font-size: 9.5px; color: var(--text3);
+  font-weight: 300; letter-spacing: 0.04em;
+  display: block;
+  margin-top: 2px;
+}
+
+nav ul { list-style: none; display: flex; align-items: center; gap: 0; }
+
+nav ul a {
+  display: block; padding: 7px 11px;
+  font-size: 13px; font-weight: 400;
+  color: var(--text2); text-decoration: none;
+  transition: color 0.15s;
+}
+
+nav ul a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--charcoal) !important;
+  color: #fff !important;
+  padding: 7px 16px !important;
+  border-radius: 5px !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  margin-left: 8px;
+  transition: opacity 0.15s !important;
+}
+
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 1080px; margin: 0 auto;
+  padding: 72px 3rem 60px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 60px;
+  align-items: start;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 300;
+  color: var(--red);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+
+.hero-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--red); }
+
+h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.9rem);
+  font-weight: 400; line-height: 1.15;
+  color: var(--text); margin-bottom: 18px;
+}
+
+h1 em { font-style: italic; color: var(--red); }
+
+.hero-desc {
+  font-size: 16px; font-weight: 300;
+  color: var(--text2); line-height: 1.8;
+  max-width: 500px; margin-bottom: 32px;
+}
+
+.hero-actions { display: flex; gap: 10px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: 6px;
+  font-size: 13px; text-decoration: none;
+  transition: all 0.15s; font-weight: 400;
+}
+
+.btn-dark { background: var(--charcoal); color: #fff; font-weight: 500; }
+.btn-dark:hover { background: #222830; }
+
+.btn-ghost {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover { background: var(--card); border-color: #bbb8b0; }
+
+/* Hero sidebar stats */
+.stat-card-stack { display: flex; flex-direction: column; gap: 1px; }
+
+.stat-card {
+  background: var(--card);
+  padding: 16px 20px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border: 1px solid var(--border2);
+}
+
+.stat-card:first-child { border-radius: 10px 10px 0 0; }
+.stat-card:last-child  { border-radius: 0 0 10px 10px; }
+
+.stat-n {
+  font-family: 'Lora', serif;
+  font-size: 1.9rem; font-weight: 400;
+  color: var(--text); line-height: 1;
+}
+
+.stat-n sup { font-size: 1.1rem; color: var(--red); }
+
+.stat-l {
+  font-size: 11.5px; color: var(--text3);
+  font-weight: 300; text-align: right;
+  line-height: 1.35; max-width: 110px;
+}
+
+/* ── SHARED SECTION WRAPPER ── */
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding: 64px 3rem;
+}
+
+.alt-bg { background: var(--bg2); }
+
+.section-header { margin-bottom: 36px; }
+
+.stag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; font-weight: 300;
+  color: var(--red); letter-spacing: 0.12em;
+  text-transform: uppercase; display: block;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-family: 'Lora', serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 400; line-height: 1.2;
+  color: var(--text); margin-bottom: 6px;
+}
+
+.sdesc {
+  font-size: 14px; color: var(--text2);
+  font-weight: 300; max-width: 500px;
+}
+
+/* ── PROJECT CARDS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.proj-card {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-top: 3px solid var(--red);
+  border-radius: 0 0 10px 10px;
+  padding: 22px 22px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.proj-card:nth-child(3n+2) { border-top-color: var(--orange); }
+.proj-card:nth-child(3n+3) { border-top-color: var(--charcoal); }
+
+.proj-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+
+.proj-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 300;
+  color: var(--red); letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--red-soft);
+  display: inline-block; padding: 2px 7px;
+  border-radius: 3px; align-self: flex-start;
+}
+
+.proj-card:nth-child(3n+2) .proj-tag {
+  color: var(--orange);
+  background: rgba(201,122,40,0.08);
+}
+
+.proj-card:nth-child(3n+3) .proj-tag {
+  color: var(--charcoal);
+  background: rgba(46,53,64,0.07);
+}
+
+.proj-title {
+  font-size: 13.5px; font-weight: 500;
+  color: var(--text); line-height: 1.4;
+}
+
+.proj-desc {
+  font-size: 12.5px; color: var(--text2);
+  font-weight: 300; line-height: 1.65; flex: 1;
+}
+
+.proj-pills {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: 4px;
+}
+
+.pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 300;
+  color: var(--text3);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 2px 7px; border-radius: 10px;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: start;
+}
+
+.about-text p {
+  font-size: 15px; color: var(--text2);
+  font-weight: 300; line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.feat-list { display: flex; flex-direction: column; gap: 10px; }
+
+.feat-item {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 16px 18px;
+  display: flex; gap: 12px; align-items: flex-start;
+  transition: border-color 0.15s;
+}
+
+.feat-item:hover { border-color: #c0b8ae; }
+
+.feat-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red); margin-top: 5px; flex-shrink: 0;
+}
+
+.feat-item:nth-child(even) .feat-dot { background: var(--orange); }
+
+.feat-title {
+  font-size: 13px; font-weight: 500; color: var(--text);
+  margin-bottom: 2px;
+}
+
+.feat-text {
+  font-size: 12px; color: var(--text2); font-weight: 300;
+  line-height: 1.55;
+}
+
+/* ── PUBLICATIONS ── */
+.pub-list {
+  border: 1px solid var(--border2);
+  border-radius: 10px; overflow: hidden;
+  background: var(--card);
+}
+
+.pub-item {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border2);
+  text-decoration: none; display: block;
+  transition: background 0.15s;
+}
+
+.pub-item:last-child { border-bottom: none; }
+.pub-item:hover { background: #fcfbf9; }
+
+.pub-meta {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 5px;
+}
+
+.pub-journal {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; color: var(--red); font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.pub-year {
+  font-size: 10.5px; color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.pub-title {
+  font-size: 14px; color: var(--text); font-weight: 500;
+  line-height: 1.4; margin-bottom: 4px;
+}
+
+.pub-authors {
+  font-size: 12px; color: var(--text2); font-weight: 300;
+  line-height: 1.5;
+}
+
+.pub-doi {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-top: 5px; font-size: 11px;
+  color: var(--orange); font-family: 'JetBrains Mono', monospace;
+  font-weight: 300;
+}
+
+.pub-more {
+  display: block; text-align: center;
+  padding: 14px; font-size: 13px;
+  color: var(--text2); text-decoration: none;
+  border-top: 1px solid var(--border2);
+  background: var(--bg2); transition: background 0.15s;
+  font-weight: 300;
+}
+
+.pub-more:hover { background: var(--bg); }
+
+/* ── OPPORTUNITY ── */
+.opp-box {
+  background: var(--charcoal);
+  border-radius: 12px; padding: 44px 48px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 32px;
+}
+
+.opp-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.opp-title {
+  font-family: 'Lora', serif;
+  font-size: 1.6rem; color: #fff;
+  font-weight: 400; line-height: 1.2; margin-bottom: 8px;
+}
+
+.opp-desc {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  font-weight: 300; max-width: 420px;
+}
+
+.btn-opp {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--red); color: #fff;
+  padding: 12px 22px; border-radius: 6px;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.btn-opp:hover { opacity: 0.85; }
+
+/* ── QUICK NAV ── */
+.qnav-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.qnav-item {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 18px 18px;
+  text-decoration: none; display: block;
+  transition: all 0.15s;
+}
+
+.qnav-item:hover {
+  border-color: #bbb8ae;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+  transform: translateY(-1px);
+}
+
+.qnav-icon {
+  font-size: 18px; margin-bottom: 8px; display: block;
+  color: var(--text3);
+}
+
+.qnav-title {
+  font-size: 13px; font-weight: 500; color: var(--text);
+  margin-bottom: 2px;
+}
+
+.qnav-desc {
+  font-size: 11.5px; color: var(--text3); font-weight: 300;
+  line-height: 1.4;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--charcoal); color: rgba(255,255,255,0.6);
+  padding: 48px 3rem 32px;
+}
+
+.footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 24px;
+}
+
+.footer-brand { font-family: 'Lora', serif; font-size: 1rem; color: #fff; margin-bottom: 4px; }
+.footer-brand-sub { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+.footer-addr { font-size: 11.5px; color: rgba(255,255,255,0.3); font-weight: 300; line-height: 1.7; }
+
+.footer-col-h {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; font-weight: 400; color: #fff;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 7px; }
+.footer-links a {
+  font-size: 12.5px; color: rgba(255,255,255,0.45);
+  text-decoration: none; font-weight: 300;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+.footer-bottom {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  font-size: 11.5px; color: rgba(255,255,255,0.25);
+}
+
+/* ── RULE ── */
+.rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 1080px; margin: 0 auto;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero > * { animation: fadeUp 0.6s ease both; }
+.hero > *:nth-child(1) { animation-delay: 0.05s; }
+.hero > *:nth-child(2) { animation-delay: 0.2s; }
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="logo" href="#">
+    <!-- Mini icon -->
+    <div class="logo-icon-wrap">
+      <div class="logo-strand">
+        <div class="logo-dot-r"></div>
+        <div class="logo-dot-r" style="opacity:0.65"></div>
+        <div class="logo-dot-r" style="opacity:0.35"></div>
+      </div>
+      <div class="logo-strand" style="gap:4px; margin: 0 2px;">
+        <div class="logo-line"></div>
+        <div class="logo-line"></div>
+        <div class="logo-line"></div>
+      </div>
+      <div class="logo-strand">
+        <div class="logo-dot-o"></div>
+        <div class="logo-dot-o" style="opacity:0.65"></div>
+        <div class="logo-dot-o" style="opacity:0.35"></div>
+      </div>
+    </div>
+    <div class="logo-text-wrap">
+      <span class="logo-mark">
+        <span class="lbb">LBB</span><span class="c1">C</span><span class="c2">C</span>
+      </span>
+      <span class="logo-sub-text">Instituto Nacional do Câncer · INCA</span>
+    </div>
+  </a>
+
+  <ul>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#pesquisa">Pesquisa</a></li>
+    <li><a href="#publicacoes">Publicações</a></li>
+    <li><a href="#plataforma">Plataforma</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a class="nav-cta" href="#oportunidades">Oportunidades</a></li>
+  </ul>
+</nav>
+
+
+<!-- ── HERO ── -->
+<div class="wrap" style="padding-top: 72px; padding-bottom: 60px;">
+  <div class="hero" style="padding: 0; max-width: 100%;">
+
+    <div>
+      <div class="hero-eyebrow">Genômica · Transcriptômica · IA · INCA</div>
+
+      <h1>
+        Bioinformática e Biologia<br>
+        Computacional do <em>Câncer</em>
+      </h1>
+
+      <p class="hero-desc">
+        Utilizamos dados ômicos em larga escala para caracterizar eventos moleculares em tumores — identificando assinaturas genômicas, marcadores prognósticos e alvos terapêuticos com impacto direto na oncologia de precisão.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-dark" href="#pesquisa">Projetos de pesquisa →</a>
+        <a class="btn btn-ghost" href="#publicacoes">Publicações</a>
+        <a class="btn btn-ghost" href="https://sites.google.com/view/bioinformaticainca-en/home" target="_blank">🇺🇸 EN</a>
+      </div>
+    </div>
+
+    <!-- Stats sidebar -->
+    <div class="stat-card-stack">
+      <div class="stat-card">
+        <div class="stat-n">20<sup>+</sup></div>
+        <div class="stat-l">Publicações em revistas internacionais</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">10<sup>+</sup></div>
+        <div class="stat-l">Projetos ativos em andamento</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" style="font-size:1.2rem; padding: 4px 0;">CNPq N2</div>
+        <div class="stat-l">Bolsa produtividade em pesquisa</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" style="font-size:1.2rem; padding: 4px 0;">FAPERJ</div>
+        <div class="stat-l">Jovem Pesquisador do Estado do RJ</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="rule">
+
+
+<!-- ── SOBRE ── -->
+<div id="sobre" class="alt-bg">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="stag">// sobre o laboratório</span>
+      <h2>Ciência de dados a serviço<br>da oncologia de precisão</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>A revolução do <em>Big Data</em> aplicado à oncologia permite um estudo mais aprofundado da biologia tumoral em nível genômico — levando a soluções mais direcionadas e personalizadas para pacientes com câncer.</p>
+        <p>O LBBCC analisa dados em larga escala para caracterizar de forma abrangente os eventos moleculares em cânceres — identificando marcadores moleculares com impacto direto no desfecho da doença.</p>
+        <p>Nosso trabalho integra sequenciamento de célula única, análise do microambiente tumoral, multi-ômica e inteligência artificial, com foco especial na população brasileira.</p>
+      </div>
+
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div>
+            <div class="feat-title">Single-cell &amp; transcriptômica espacial</div>
+            <div class="feat-text">scRNA-seq, snATAC-seq e Xenium Prime para resolução celular em tumores de pacientes brasileiros.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div>
+            <div class="feat-title">IA aplicada à oncologia</div>
+            <div class="feat-text">Machine learning para diagnóstico, prognóstico e predição terapêutica integrando ômica e histologia H&amp;E.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div>
+            <div class="feat-title">Plataforma computacional multiusuário</div>
+            <div class="feat-text">Infraestrutura de alta performance para análise de dados genômicos no INCA.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-dot"></div>
+          <div>
+            <div class="feat-title">Bioinformática para a América Latina</div>
+            <div class="feat-text">Workshop de single-cell e biohub de transcriptômica espacial com colaboradores da região.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── PROJETOS ── -->
+<div id="pesquisa">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="stag">// linhas de pesquisa</span>
+      <h2>Projetos em andamento</h2>
+      <p class="sdesc">Investigações que integram bioinformática, genômica e IA no contexto da oncologia de precisão.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <span class="proj-tag">scRNA-seq · Splicing</span>
+        <div class="proj-title">Splicing alternativo em câncer de ovário de alto grau (HGSOC)</div>
+        <p class="proj-desc">Análise de splicing alternativo em resolução de célula única com 10x Genomics em pacientes brasileiras com carcinoma seroso de alto grau. Investigamos isoformas diferencialmente expressas entre subpopulações tumorais.</p>
+        <div class="proj-pills">
+          <span class="pill">10x Genomics</span>
+          <span class="pill">LeafCutter</span>
+          <span class="pill">Seurat</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-tag">ML · Biópsia líquida</span>
+        <div class="proj-title">Machine learning para diagnóstico e prognóstico — Projeto Spectra/INCA</div>
+        <p class="proj-desc">Integração de dados ômicos e histologia com deep learning para predição de resposta terapêutica em câncer de ovário. Inclui subprojetos de biópsia líquida e análise de lâminas H&amp;E com redes convolucionais.</p>
+        <div class="proj-pills">
+          <span class="pill">CNN</span>
+          <span class="pill">RNA-seq</span>
+          <span class="pill">ctDNA</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-tag">miRNA · qPCR</span>
+        <div class="proj-title">MIOROV — modelo prognóstico baseado em miRNA</div>
+        <p class="proj-desc">Modelo prognóstico por painel de qPCR de miRNA desenvolvido e validado na coorte INCA de câncer de ovário. Avaliação de desempenho clínico e potencial para implementação diagnóstica.</p>
+        <div class="proj-pills">
+          <span class="pill">miRNA-seq</span>
+          <span class="pill">qPCR</span>
+          <span class="pill">Cox regression</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-tag">RNA-seq · Espacial</span>
+        <div class="proj-title">Transcriptômica da obesidade em câncer de ovário</div>
+        <p class="proj-desc">Análise de RNA-seq bulk, single-cell e transcriptômica espacial em modelo murino obeso, com comparação sistemática a dados de pacientes humanas do INCA. Foco no microambiente tumoral e vias imunes.</p>
+        <div class="proj-pills">
+          <span class="pill">Visium</span>
+          <span class="pill">scRNA-seq</span>
+          <span class="pill">DESeq2</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-tag">snRNA · ATAC-seq</span>
+        <div class="proj-title">B-ALL multi-ômica: diagnóstico, remissão e recidiva</div>
+        <p class="proj-desc">Single-nuclei RNA-seq e ATAC-seq em leucemia linfoblástica aguda B ao longo da progressão clínica. Caracterização de estados epigenômicos associados à resistência terapêutica e recidiva.</p>
+        <div class="proj-pills">
+          <span class="pill">snRNA-seq</span>
+          <span class="pill">snATAC-seq</span>
+          <span class="pill">ArchR</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <span class="proj-tag">ATPBR · TME</span>
+        <div class="proj-title">Atlas Tumoral da População Brasileira (2023–2026)</div>
+        <p class="proj-desc">Caracterização abrangente do microambiente tumoral em diferentes cânceres na população brasileira. Colaboração com a Dra. Claudia Bessa Pereira Chaves. Parte da iniciativa ATPBR do INCA.</p>
+        <div class="proj-pills">
+          <span class="pill">Multi-ômica</span>
+          <span class="pill">TME</span>
+          <span class="pill">scRNA-seq</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ── PUBLICAÇÕES ── -->
+<hr class="rule">
+
+<div id="publicacoes" class="alt-bg">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="stag">// publicações em destaque</span>
+      <h2>Produção científica recente</h2>
+      <p class="sdesc">Seleção de artigos publicados pelo laboratório em revistas internacionais.</p>
+    </div>
+
+    <div class="pub-list">
+
+      <a class="pub-item" href="https://doi.org/10.1038/s41467-024-49916-4" target="_blank">
+        <div class="pub-meta">
+          <span class="pub-journal">Nature Communications</span>
+          <span class="pub-year">2024</span>
+        </div>
+        <div class="pub-title">Single-cell resolution characterization of myeloid-derived cell states with implication in cancer outcome</div>
+        <div class="pub-authors">Guimarães GR, Maklouf GR, Teixeira CE, Santos LO, Tessarollo NG, … Boroni M et al.</div>
+        <div class="pub-doi">↗ doi:10.1038/s41467-024-49916-4</div>
+      </a>
+
+      <a class="pub-item" href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/cam4.6729" target="_blank">
+        <div class="pub-meta">
+          <span class="pub-journal">Cancer Medicine</span>
+          <span class="pub-year">2023</span>
+        </div>
+        <div class="pub-title">BRCA1, BRCA2, and TP53 germline and somatic variants and clinicopathological characteristics of Brazilian patients with epithelial ovarian cancer</div>
+        <div class="pub-authors">Stahnke C, Molina de Armas E, Bessa Pereira Chaves C, Scherer NM, … Boroni M, Martins Moreira MA.</div>
+        <div class="pub-doi">↗ doi:10.1002/cam4.6729</div>
+      </a>
+
+      <a class="pub-item" href="https://doi.org/10.1038/s41467-022-34407-1" target="_blank">
+        <div class="pub-meta">
+          <span class="pub-journal">Nature Communications</span>
+          <span class="pub-year">2022</span>
+        </div>
+        <div class="pub-title">Connecting multiple microenvironment proteomes uncovers the biology in head and neck cancer</div>
+        <div class="pub-authors">Busso-Lopes AF, Neves LX, Câmara GA, … Pretti MAM, Boroni M et al.</div>
+        <div class="pub-doi">↗ doi:10.1038/s41467-022-34407-1</div>
+      </a>
+
+      <a class="pub-item" href="https://doi.org/10.3389/fphar.2022.749472" target="_blank">
+        <div class="pub-meta">
+          <span class="pub-journal">Frontiers in Pharmacology</span>
+          <span class="pub-year">2022</span>
+        </div>
+        <div class="pub-title">Novel Diagnostic and Therapeutic Options for KMT2A-Rearranged Acute Leukemias</div>
+        <div class="pub-authors">Lopes BA, Poubel CP, Teixeira CE, Caye-Eude A, … Boroni M, Emerenciano M.</div>
+        <div class="pub-doi">↗ doi:10.3389/fphar.2022.749472</div>
+      </a>
+
+      <a class="pub-more" href="https://sites.google.com/view/bioinformaticainca/linhas-de-pesquisa/publicações" target="_blank">
+        Ver todas as publicações →
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── OPORTUNIDADES ── -->
+<div id="oportunidades">
+  <div class="wrap">
+    <div class="opp-box">
+      <div>
+        <div class="opp-eyebrow">// oportunidades abertas</div>
+        <div class="opp-title">Interesse em trabalhar<br>com dados genômicos?</div>
+        <p class="opp-desc">Vagas para estudantes de graduação, pós-graduação e pesquisadores com interesse em bioinformática, análise de dados ômicos e desenvolvimento de plataformas computacionais para oncologia.</p>
+      </div>
+      <a class="btn-opp" href="https://sites.google.com/view/bioinformaticainca/oportunidades" target="_blank">
+        Ver oportunidades →
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── QUICK NAV ── -->
+<hr class="rule">
+
+<div class="alt-bg" id="plataforma">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="stag">// navegação rápida</span>
+      <h2>Explore o laboratório</h2>
+    </div>
+    <div class="qnav-grid">
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/membros-do-laboratorio" target="_blank">
+        <span class="qnav-icon">◎</span>
+        <div class="qnav-title">Equipe</div>
+        <div class="qnav-desc">Pesquisadores, alunos e colaboradores</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/cursos" target="_blank">
+        <span class="qnav-icon">◈</span>
+        <div class="qnav-title">Cursos</div>
+        <div class="qnav-desc">Materiais didáticos e workshops</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/plataforma-multiusuario" target="_blank">
+        <span class="qnav-icon">▣</span>
+        <div class="qnav-title">Plataforma</div>
+        <div class="qnav-desc">Parque computacional e guias de uso</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/participacao-em-eventos" target="_blank">
+        <span class="qnav-icon">◇</span>
+        <div class="qnav-title">Eventos</div>
+        <div class="qnav-desc">Congressos e conferências</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/lbbc-na-midia" target="_blank">
+        <span class="qnav-icon">◐</span>
+        <div class="qnav-title">Mídia</div>
+        <div class="qnav-desc">Cobertura jornalística e divulgação</div>
+      </a>
+      <a class="qnav-item" href="https://www.instagram.com/bioinformatics_lbbc/" target="_blank">
+        <span class="qnav-icon">◆</span>
+        <div class="qnav-title">Instagram</div>
+        <div class="qnav-desc">@bioinformatics_lbbc</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/links-uteis" target="_blank">
+        <span class="qnav-icon">◉</span>
+        <div class="qnav-title">Utilidades</div>
+        <div class="qnav-desc">Links e recursos úteis</div>
+      </a>
+      <a class="qnav-item" href="https://sites.google.com/view/bioinformaticainca/contato" target="_blank" id="contato">
+        <span class="qnav-icon">○</span>
+        <div class="qnav-title">Contato</div>
+        <div class="qnav-desc">Fale com o laboratório</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Laboratório de Bioinformática e<br>Biologia Computacional do Câncer</div>
+      <div class="footer-brand-sub">LBBCC · Instituto Nacional do Câncer · INCA</div>
+      <div class="footer-addr">
+        Rua André Cavalcanti, 37 — 2º andar<br>
+        Centro, Rio de Janeiro – RJ, Brasil<br>
+        CEP 20231-050
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-h">Pesquisa</div>
+      <ul class="footer-links">
+        <li><a href="https://sites.google.com/view/bioinformaticainca/linhas-de-pesquisa/projetos-em-andamento" target="_blank">Projetos em andamento</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/linhas-de-pesquisa/publicações" target="_blank">Publicações</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/participacao-em-eventos" target="_blank">Eventos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Laboratório</div>
+      <ul class="footer-links">
+        <li><a href="https://sites.google.com/view/bioinformaticainca/membros-do-laboratorio" target="_blank">Equipe</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/cursos" target="_blank">Cursos</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/oportunidades" target="_blank">Oportunidades</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/lbbc-na-midia" target="_blank">Mídia</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Plataforma</div>
+      <ul class="footer-links">
+        <li><a href="https://sites.google.com/view/bioinformaticainca/plataforma-multiusuario/parque-computacional" target="_blank">Parque computacional</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/plataforma-multiusuario/guia-do-usuario" target="_blank">Guia do usuário</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/plataforma-multiusuario/normas-de-uso" target="_blank">Normas de uso</a></li>
+        <li><a href="https://sites.google.com/view/bioinformaticainca/links-uteis" target="_blank">Utilidades</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 LBBCC · Instituto Nacional do Câncer</span>
+    <span>
+      <a href="https://sites.google.com/view/bioinformaticainca-en/home" style="color: rgba(255,255,255,0.25); text-decoration:none;">English version →</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

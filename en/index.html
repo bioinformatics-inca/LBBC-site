@@ -447,6 +447,34 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 .courses b { display: block; font-weight: 700; line-height: 1.3; }
 .courses small { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
 .courses a { display: inline-block; margin-top: 8px; font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+
+.ext { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 900px) { .ext { grid-template-columns: 1fr; } }
+.ext-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; }
+.ext-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 10px; }
+.ext-card > p { color: var(--muted); }
+.ext-meta { font-size: 0.88rem; color: var(--muted); margin-top: 12px; }
+.ext-meta a { color: var(--accent); }
+.games { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.games li { border-radius: 14px; padding: 12px 14px; background: var(--wash-r); }
+.games li:nth-child(3n+2) { background: var(--wash-o); }
+.games li:nth-child(3n) { background: var(--wash-y); }
+.games b { display: block; font-family: var(--f-display); font-weight: 800; font-size: 0.98rem; }
+.games small { display: block; color: var(--muted); font-size: 0.82rem; line-height: 1.35; margin-top: 2px; }
+.ext-side { display: grid; gap: 18px; }
+.ext-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ext-stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+.ext-stats b { display: block; font-family: var(--f-display); font-size: 1.9rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+.ext-stats span { display: block; color: var(--muted); font-size: 0.84rem; line-height: 1.35; margin-top: 4px; }
+.ext-note { color: var(--muted); font-size: 0.78rem; margin-top: 8px; }
+.stops { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.stops li { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.stops .when { font-family: var(--f-mono); font-size: 0.8rem; color: var(--accent); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 28px; }
+.gallery[hidden] { display: none; }
+.gallery figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--soft); }
+.gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.gallery figcaption { font-size: 0.82rem; color: var(--muted); padding: 8px 12px 10px; }
 </style>
 </head>
 <body>
@@ -774,6 +802,51 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
         <a class="talk" href="https://www.youtube.com/watch?v=KvtTk_S-peM&t=2262s" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/KvtTk_S-peM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Machine learning and omics: a new look at precision medicine (in Portuguese)</b><small>16th UFRJ Oncobiology Symposium, 2020 · from 37:42</small></a>
         <a class="talk" href="https://www.youtube.com/watch?v=CDp7txlaJt8" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/CDp7txlaJt8/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Brazilian INCA scientist who beat cancer now leads research (in Portuguese)</b><small>News report · TV Senado</small></a>
       </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="extensao">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">Outreach</div><h2>Science that comes into <em class="o">play</em></h2></div>
+        <p>We take cancer research to schools, public squares and fairs with educational games created by the team. The game opens the conversation, and the conversation brings science closer to people.</p>
+      </div>
+      <div class="ext">
+        <div class="ext-card">
+          <h3>Playing against cancer</h3>
+          <p>An outreach project with board and card games about cancer biology, genetics, risk factors, prevention, diagnosis and treatment. During each game, the team mediates, links every move to a scientific concept, answers questions and talks about myths.</p>
+          <ul class="games">
+            <li><b>DNA Mystery</b><small>Risk factors linked to different tumour types</small></li>
+            <li><b>Cancer Riddles</b><small>Mendelian inheritance and hereditary cancer predisposition</small></li>
+            <li><b>RNA Matcher</b><small>Amino acids, translation and how mutations change proteins</small></li>
+            <li><b>Prevention Bingo</b><small>Risk factors, tumour development and cancer myths</small></li>
+          </ul>
+          <p class="ext-meta">Coordination: Mariana Boroni · Team: Glenerson Batista and Gabriel Fonseca</p>
+        </div>
+        <div class="ext-side">
+          <div class="ext-card">
+            <h3>Where science came into play</h3>
+            <ul class="stops">
+              <li><span class="when">Oct 2026</span><span>CEFET/RJ, Maracanã</span></li>
+              <li><span class="when">Oct 2025</span><span>2nd Seminar on Education and Board Games, Fiocruz</span></li>
+              <li><span class="when">Oct 2025</span><span>CEFET/RJ, Maracanã</span></li>
+              <li><span class="when">Aug 2025</span><span>Hangar Convention Center of the Amazon, Belém</span></li>
+              <li><span class="when">Oct 2024</span><span>CEFET/RJ, Maracanã</span></li>
+              <li><span class="when">2024</span><span>Genetics in the Square (Genética na Praça)</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="ext-stats">
+              <div><b>22 of 22</b><span>participants would play again</span></div>
+              <div><b>20 of 22</b><span>rated the experience as great</span></div>
+              <div><b>32% → 81%</b><span>clearly understood genetic inheritance and cancer</span></div>
+              <div><b>18% → 68%</b><span>understood benzene as a risk factor</span></div>
+            </div>
+            <p class="ext-note">Participants' self-assessment before and after playing (n = 22). Not an objective knowledge test.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gallery" id="gallery" hidden></div>
     </div>
   </section>
 
@@ -1121,6 +1194,15 @@ const card = ([n, r, id, img], grey) => {
 document.getElementById('team').innerHTML = TEAM.map(([g, ps]) => `<div class="team-group"><h3>${g} · ${ps.length}</h3><div class="team">${ps.map(p => card(p)).join('')}</div></div>`).join('');
 document.getElementById('plat-team').innerHTML = [['Nicole Scherer, Ph.D.', 'Technologist · platform manager', '3555370764574908', ''], ['Fenícia Brito', '', '', '']].map(p => card(p)).join('');
 document.getElementById('alumni').innerHTML = ALUMNI.map(p => card(p, true)).join('');
+
+  // Galeria de fotos de extensão: [arquivo em fotos/extensao/, legenda PT, legenda EN]
+  const PHOTOS = [];
+  (function () {
+    const g = document.getElementById('gallery'); if (!g || !PHOTOS.length) return;
+    const en = document.documentElement.lang === 'en'; const base = en ? '../' : '';
+    g.innerHTML = PHOTOS.map(p => '<figure><img src="' + base + 'fotos/extensao/' + p[0] + '" alt="' + (en ? p[2] : p[1]) + '" loading="lazy"><figcaption>' + (en ? p[2] : p[1]) + '</figcaption></figure>').join('');
+    g.hidden = false;
+  })();
 </script>
 
 </body>

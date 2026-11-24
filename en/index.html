@@ -99,7 +99,7 @@ p { margin: 0; }
 .nav a.cta { background: var(--accent); color: var(--on-accent); font-weight: 600; margin-left: 8px; padding: 9px 16px; }
 .nav a.cta:hover { background: var(--accent-hi); }
 .menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.9rem; cursor: pointer; }
-@media (max-width: 1240px) {
+@media (max-width: 1279px) {
   .menu-btn { display: block; }
   .nav { display: none; position: absolute; top: 80px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px var(--gutter-r) 16px var(--gutter-l); box-shadow: var(--shadow); }
   .nav.open { display: flex; }
@@ -422,6 +422,8 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 @media (max-width: 560px) { .sunrise .mol.m4 { display: none; } }
 .lang { font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: .06em; border: 1.5px solid var(--line); }
 .plat-team { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 420px; }
+.lang { display: inline-flex !important; align-items: center; gap: 6px; }
+.flag { width: 20px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex: none; }
 </style>
 </head>
 <body>
@@ -441,7 +443,7 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
       <a href="#plataforma">Platform</a>
       <a href="#midia">News</a>
       <a href="#contato">Contact</a>
-      <a class="lang" href="../" lang="pt-BR" hreflang="pt-BR" aria-label="Versão em português">PT</a>
+      <a class="lang" href="../" lang="pt-BR" hreflang="pt-BR" aria-label="Versão em português"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" rx="4" fill="#009C3B"/><path d="M30 5L54 20L30 35L6 20Z" fill="#FFDF00"/><circle cx="30" cy="20" r="8.5" fill="#002776"/><path d="M22 18.5c5-1.5 11-1 16 2" stroke="#fff" stroke-width="1.6" fill="none"/></svg>PT</a>
       <a class="cta" href="#junte-se">Join us</a>
     </nav>
   </div>

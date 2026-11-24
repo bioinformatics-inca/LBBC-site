@@ -99,7 +99,7 @@ p { margin: 0; }
 .nav a.cta { background: var(--accent); color: var(--on-accent); font-weight: 600; margin-left: 8px; padding: 9px 16px; }
 .nav a.cta:hover { background: var(--accent-hi); }
 .menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.9rem; cursor: pointer; }
-@media (max-width: 1240px) {
+@media (max-width: 1279px) {
   .menu-btn { display: block; }
   .nav { display: none; position: absolute; top: 80px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px var(--gutter-r) 16px var(--gutter-l); box-shadow: var(--shadow); }
   .nav.open { display: flex; }
@@ -422,6 +422,8 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 @media (max-width: 560px) { .sunrise .mol.m4 { display: none; } }
 .lang { font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: .06em; border: 1.5px solid var(--line); }
 .plat-team { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 420px; }
+.lang { display: inline-flex !important; align-items: center; gap: 6px; }
+.flag { width: 20px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex: none; }
 </style>
 </head>
 <body>
@@ -441,7 +443,7 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
       <a href="#plataforma">Plataforma</a>
       <a href="#midia">Notícias</a>
       <a href="#contato">Contato</a>
-      <a class="lang" href="en/" lang="en" hreflang="en" aria-label="English version">EN</a>
+      <a class="lang" href="en/" lang="en" hreflang="en" aria-label="English version"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="40" rx="4"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></g></svg>EN</a>
       <a class="cta" href="#junte-se">Junte-se a nós</a>
     </nav>
   </div>

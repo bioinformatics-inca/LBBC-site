@@ -424,6 +424,29 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 .plat-team { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 420px; }
 .lang { display: inline-flex !important; align-items: center; gap: 6px; }
 .flag { width: 20px; height: 14px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex: none; }
+.talks-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin: 56px 0 18px; }
+.talks-head h3 { font-size: 1.5rem; font-weight: 800; }
+.talks-head p { color: var(--muted); font-size: 0.92rem; }
+.talks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 18px; }
+@media (max-width: 760px) { .talks { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .talks { grid-template-columns: 1fr; } }
+.talk { display: flex; flex-direction: column; gap: 8px; text-decoration: none; min-width: 0; }
+.thumb { position: relative; display: block; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 16px; overflow: hidden; background: linear-gradient(130deg, var(--sun-a), var(--sun-b) 55%, var(--sun-c)); color: var(--accent); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.thumb .play { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; translate: -50% -50%; opacity: .92; transition: transform .2s; }
+.talk:hover .thumb img { transform: scale(1.04); }
+.talk:hover .play { transform: scale(1.12); }
+.talk b { font-weight: 600; line-height: 1.35; }
+.talk:hover b { color: var(--accent); }
+.talk small { color: var(--muted); font-size: 0.82rem; }
+.courses { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.courses li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+.courses .c-yr { font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; color: var(--accent); background: var(--wash-r); border-radius: 14px; display: grid; place-items: center; height: 48px; }
+.courses li:nth-child(3n+2) .c-yr { color: var(--c3); background: var(--wash-o); }
+.courses li:nth-child(3n) .c-yr { color: #A87900; background: var(--wash-y); }
+.courses b { display: block; font-weight: 700; line-height: 1.3; }
+.courses small { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+.courses a { display: inline-block; margin-top: 8px; font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -663,6 +686,14 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
         </div></li>
       </ol>
       <div class="toolbox"><b>Toolbox</b><a href="https://multiqc.info/" target="_blank" rel="noopener">MultiQC</a><a href="https://github.com/Xinglab/RNACocktail" target="_blank" rel="noopener">RNACocktail</a><a href="http://jvenn.toulouse.inra.fr/app/index.html" target="_blank" rel="noopener">jvenn</a><a href="https://www.datanovia.com/en/blog/types-of-clustering-methods-overview-and-quick-algorithms/" target="_blank" rel="noopener">Clustering guide</a></div>
+      <div class="talks-head"><h3>Courses we organise</h3><p>LBBC and partner workshops and courses, open to the community.</p></div>
+      <ol class="courses">
+        <li><span class="c-yr">2024</span><div><b>Single Cell Genomics: Latin America &amp; the Caribbean</b><small>9–16 August 2024 · at INCA, with Wellcome Connecting Science</small><a href="https://coursesandconferences.wellcomeconnectingscience.org/news_item/single-cells-sequencing-and-samba-in-rio-de-janeiro-brazil/" target="_blank" rel="noopener">Learn more ↗</a></div></li>
+        <li><span class="c-yr">2024</span><div><b>14th INCA Summer Course: cancer research</b><small>22 January – 2 February 2024</small></div></li>
+        <li><span class="c-yr">2021</span><div><b>2nd LBBC Scientific Training Workshop</b><small>Single-cell analysis (1–5 March) and epigenome analysis (8–12 March)</small></div></li>
+        <li><span class="c-yr">2019</span><div><b>1st LBBC Scientific Training Workshop</b><small>Single-cell analysis (18–19 November) and machine learning for omics data (21–22 November)</small></div></li>
+        <li><span class="c-yr">2015</span><div><b>R for Beginners</b><small>Hands-on classes for INCA students and staff, from RStudio to data visualisation</small></div></li>
+      </ol>
     </div>
   </section>
 
@@ -704,8 +735,8 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
   <section class="block" id="midia">
     <div class="wrap">
       <div class="sec-head">
-        <div><div class="eyebrow">News</div><h2>Awards and LBBC <em>in the news</em></h2></div>
-        <p>Press coverage, team awards and international initiatives, newest first. Awards as listed in the researchers' Lattes CVs.</p>
+        <div><div class="eyebrow">News</div><h2>News, awards and <em>talks</em></h2></div>
+        <p>Press coverage, team awards, international initiatives and talks, newest first. Awards as listed in the researchers' Lattes CVs.</p>
       </div>
       <ul class="news" id="news">
         <li><span class="when">May 2026</span><div><a href="https://ninho.inca.gov.br/jspui/bitstream/123456789/18144/3/Cartografia%20contra%20o%20c%c3%a2ncer.pdf" target="_blank" rel="noopener">Mapping cancer: the Brazilian Population Tumor Atlas (in Portuguese)</a><small><span class="ntag m">Press</span>Rede Câncer nº 61 · INCA</small></div></li>
@@ -734,6 +765,14 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
         <li class="more" hidden><span class="when">—</span><div><a href="https://cienciahoje.org.br/artigo/do-cancer-a-agricultura-e-de-volta-ao-cancer/" target="_blank" rel="noopener">From cancer to agriculture, and back to cancer (in Portuguese)</a><small><span class="ntag m">Press</span>Ciência Hoje · our coordinator's career</small></div></li>
       </ul>
       <button type="button" class="btn show-more" id="news-more">See all news (24)</button>
+      <div class="talks-head"><h3>Talks and events</h3><p>Team talks at conferences, webinars and symposia.</p></div>
+      <div class="talks">
+        <a class="talk" href="https://www.youtube.com/watch?v=mg5Qi-uY39I" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/mg5Qi-uY39I/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>High-resolution profiling of macrophage sub-populations</b><small>Human Cell Atlas General Meeting 2020</small></a>
+        <a class="talk" href="https://www.youtube.com/watch?v=DMjuUQxWSNU" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/DMjuUQxWSNU/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Immune profile diversity in the tumour microenvironment and tumour progression (in Portuguese)</b><small>Onco Webinar · Oncobiology Program, UFRJ</small></a>
+        <a class="talk" href="https://www.youtube.com/watch?v=88PAM7u0mEU" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/88PAM7u0mEU/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Crosstalk between malignant and microenvironment cells: a complex conversation (in Portuguese)</b><small>Talk</small></a>
+        <a class="talk" href="https://www.youtube.com/watch?v=cJScX1QMARo" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/cJScX1QMARo/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Frontiers of genomics for human health (in Portuguese)</b><small>Medicina e Saúde PUC-Rio</small></a>
+        <a class="talk" href="https://www.youtube.com/watch?v=KvtTk_S-peM&t=2262s" target="_blank" rel="noopener"><span class="thumb"><img src="https://i.ytimg.com/vi/KvtTk_S-peM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><svg class="play" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="currentColor"/><path d="M19 15l14 9-14 9z" fill="#fff"/></svg></span><b>Machine learning and omics: a new look at precision medicine (in Portuguese)</b><small>16th UFRJ Oncobiology Symposium, 2020 · from 37:42</small></a>
+      </div>
     </div>
   </section>
 

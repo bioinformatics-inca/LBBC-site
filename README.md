@@ -1,6 +1,6 @@
 # LBBC — Site do Laboratório
 
-Site do **Laboratório de Bioinformática e Biologia Computacional do Câncer (LBBCC)** do Instituto Nacional do Câncer (INCA), hospedado via GitHub Pages.
+Site do **Laboratório de Bioinformática e Biologia Computacional (LBBC)** do Instituto Nacional do Câncer (INCA), hospedado via GitHub Pages.
 
 🔗 **Site:** https://bioinformatics-inca.github.io/LBBC-site/
 
@@ -40,4 +40,4 @@ git push
 
 ---
 
-LBBCC · INCA · Rio de Janeiro
+LBBC · INCA · Rio de Janeiro

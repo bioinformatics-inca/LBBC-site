@@ -2,7 +2,7 @@
 
 Site do **Laboratório de Bioinformática e Biologia Computacional do Câncer (LBBCC)** do Instituto Nacional do Câncer (INCA), hospedado via GitHub Pages.
 
-🔗 **Site:** https://bioinformatics-inca.github.io/LBBCC-site/
+🔗 **Site:** https://bioinformatics-inca.github.io/LBBC-site/
 
 ---
 

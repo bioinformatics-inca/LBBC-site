@@ -94,12 +94,12 @@ p { margin: 0; }
 .logo-svg { height: 62px; width: auto; display: block; }
 .brand-inca { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); border-left: 1px solid var(--line); padding-left: 12px; }
 .nav { display: flex; gap: 2px; align-items: center; }
-.nav a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--muted); padding: 8px 10px; border-radius: 999px; transition: color .15s, background .15s; }
+.nav a { white-space: nowrap; text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--muted); padding: 8px 7px; border-radius: 999px; transition: color .15s, background .15s; }
 .nav a:hover { color: var(--ink); background: var(--brand-soft); }
 .nav a.cta { background: var(--accent); color: var(--on-accent); font-weight: 600; margin-left: 8px; padding: 9px 16px; }
 .nav a.cta:hover { background: var(--accent-hi); }
 .menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.9rem; cursor: pointer; }
-@media (max-width: 1060px) {
+@media (max-width: 1240px) {
   .menu-btn { display: block; }
   .nav { display: none; position: absolute; top: 80px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px var(--gutter-r) 16px var(--gutter-l); box-shadow: var(--shadow); }
   .nav.open { display: flex; }
@@ -421,6 +421,7 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 .sunrise .level { background: color-mix(in srgb, var(--surface) 75%, transparent); box-shadow: none; }
 @media (max-width: 560px) { .sunrise .mol.m4 { display: none; } }
 .lang { font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: .06em; border: 1.5px solid var(--line); }
+.plat-team { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 420px; }
 </style>
 </head>
 <body>
@@ -674,8 +675,10 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
           <p>The platform started with its first cluster in 2013 and now serves more than 40 users. Besides the cluster, it offers an RStudio server, an Open OnDemand portal, a high-memory node and now Octopus, a DGX H200 for artificial intelligence.</p>
           <h3>Software</h3>
           <div class="stack"><span>Rocky Linux 8</span><span>Slurm</span><span>Environment Modules</span><span>Apptainer</span><span>Conda</span><span>RStudio Server</span><span>Open OnDemand</span></div>
+          <h3>Platform team</h3>
+          <div class="team plat-team" id="plat-team"></div>
           <h3>How to get access</h3>
-          <p>Send your project and user registration request to the address below. Platform team: Dr. Nicole Scherer and Fenícia Brito.</p>
+          <p>Send your project and user registration request to the address below.</p>
           <div class="copy-row"><code>contatohpc@inca.gov.br</code><button type="button" data-copy="contatohpc@inca.gov.br">Copy</button></div>
         </div>
         <div class="table-scroll">
@@ -998,7 +1001,6 @@ document.getElementById('news-more').addEventListener('click', e => { document.q
 // To add a photo: put the image file in /fotos and set the 4th field, e.g. 'fotos/nicole.jpg'
 const L = id => `http://lattes.cnpq.br/${id}`;
 const TEAM = [
-  ['Bioinformatics platform', [['Nicole Scherer, Ph.D.', 'Technologist · platform manager', '3555370764574908', ''], ['Fenícia Brito', 'Bioinformatics platform', '', '']]],
   ['Postdocs', [
     ['Nayara Tessarollo, Ph.D.', 'Microenvironment and resistance in ovarian cancer', '8607496356516938', ''],
     ['Liliane Conteville, Ph.D.', 'Multi-omics · Tumor Atlas (ATPBR)', '5411923101730225', ''],
@@ -1074,6 +1076,7 @@ const card = ([n, r, id, img], grey) => {
   return id ? `<a class="member"${tone} href="${L(id)}" target="_blank" rel="noopener" title="Open Lattes CV">${inner}</a>` : `<div class="member"${tone}>${inner}</div>`;
 };
 document.getElementById('team').innerHTML = TEAM.map(([g, ps]) => `<div class="team-group"><h3>${g} · ${ps.length}</h3><div class="team">${ps.map(p => card(p)).join('')}</div></div>`).join('');
+document.getElementById('plat-team').innerHTML = [['Nicole Scherer, Ph.D.', 'Technologist · platform manager', '3555370764574908', ''], ['Fenícia Brito', '', '', '']].map(p => card(p)).join('');
 document.getElementById('alumni').innerHTML = ALUMNI.map(p => card(p, true)).join('');
 </script>
 

@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem("lbbc-theme");if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="canonical" href="https://bioinformatics-inca.github.io/LBBC-site/">
 <link rel="alternate" hreflang="pt-BR" href="https://bioinformatics-inca.github.io/LBBC-site/">
@@ -485,6 +486,14 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
 .gallery figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--soft); }
 .gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .gallery figcaption { font-size: 0.82rem; color: var(--muted); padding: 8px 12px 10px; }
+
+.theme-t { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; flex: none; }
+.theme-t:hover { color: var(--accent); border-color: var(--accent); }
+.theme-t svg { width: 18px; height: 18px; }
+.theme-t .i-sun { display: none; }
+:root[data-theme="dark"] .theme-t .i-sun { display: block; }
+:root[data-theme="dark"] .theme-t .i-moon { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) .theme-t .i-sun { display: block; } :root:not([data-theme]) .theme-t .i-moon { display: none; } }
 </style>
 </head>
 <body>
@@ -504,6 +513,7 @@ a.member:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--sh
       <a href="#plataforma">Plataforma</a>
       <a href="#midia">Notícias</a>
       <a href="#contato">Contato</a>
+      <button type="button" class="theme-t" id="theme-t" aria-label="Alternar modo escuro" title="Modo escuro"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg></button>
       <a class="lang" href="en/" lang="en" hreflang="en" aria-label="English version"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="40" rx="4"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></g></svg>EN</a>
       <a class="cta" href="#junte-se">Junte-se a nós</a>
     </nav>
@@ -1212,6 +1222,17 @@ document.getElementById('alumni').innerHTML = ALUMNI.map(p => card(p, true)).joi
     const en = document.documentElement.lang === 'en'; const base = en ? '../' : '';
     g.innerHTML = PHOTOS.map(p => '<figure><img src="' + base + 'fotos/extensao/' + p[0] + '" alt="' + (en ? p[2] : p[1]) + '" loading="lazy"><figcaption>' + (en ? p[2] : p[1]) + '</figcaption></figure>').join('');
     g.hidden = false;
+  })();
+
+  // Tema: claro por padrão; o botão liga/desliga o modo escuro e lembra a escolha.
+  (function () {
+    const b = document.getElementById('theme-t'); if (!b) return;
+    b.addEventListener('click', () => {
+      const r = document.documentElement;
+      const dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      r.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('lbbc-theme', r.dataset.theme); } catch (e) {}
+    });
   })();
 </script>
 

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bioinformatics-inca.github.io/LBBCC-site/sitemap.xml

@@ -1,4 +1,4 @@
-# LBBCC — Site do Laboratório
+# LBBC — Site do Laboratório
 
 Site do **Laboratório de Bioinformática e Biologia Computacional do Câncer (LBBCC)** do Instituto Nacional do Câncer (INCA), hospedado via GitHub Pages.
 
